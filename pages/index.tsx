@@ -1,35 +1,17 @@
 import React from "react";
-import { Button, Htag, Paragraph } from "../components";
-import { Tag } from "../components/Tag/Tag";
+import { Button, Htag, Paragraph, Rating, Tag } from "../components";
+import { Layout, withLayout } from "../layout/Layout";
 
-export default function Home(): JSX.Element {
-  const [counter, setCounter] = React.useState<number>(0);
+function Home(): JSX.Element {
+  const [rating, setRating] = React.useState<number>(3);
 
-  React.useEffect(() => {
-    console.log(counter + " Counter");
-    return function cleanup() {
-      console.log("unmount");
-    };
-  }, [counter]);
-
-  React.useEffect(() => {
-    counter > 3 && console.log("mountedDDDDD");
-  });
   return (
     <>
       <Htag tag="h3">заголовок</Htag>
-      <Button
-        appearance="primary"
-        arrow="right"
-        onClick={() => setCounter((x) => x + 1)}
-      >
-        button {counter}
+      <Button appearance="primary" arrow="right">
+        button
       </Button>
-      <Button
-        appearance="ghost"
-        arrow="down"
-        onClick={() => setCounter(counter - 1)}
-      >
+      <Button appearance="ghost" arrow="down">
         button
       </Button>
       <Paragraph size="large">
@@ -49,6 +31,10 @@ export default function Home(): JSX.Element {
       <Tag size={"small"} color={"green"}>
         small primary
       </Tag>
+
+      <Rating rating={rating} isEditable setRating={setRating} />
     </>
   );
 }
+
+export default withLayout(Home);
