@@ -47,7 +47,7 @@ function Home({ menu, firstCategory }: HomeProps): JSX.Element {
 export const getStaticProps: GetStaticProps = async () => {
   const firstCategory = 0;
   const { data: menu } = await axios.post<MenuItem[]>(
-    "https://courses-top.ru/api/top-page/find"
+    "https://courses-top.ru/api/top-page/find", { firstCategory }
   );
   return {
     props: {
